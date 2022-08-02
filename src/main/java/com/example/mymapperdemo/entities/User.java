@@ -11,6 +11,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "\"user\"")
+@SecondaryTable (name = "family",pkJoinColumns = @PrimaryKeyJoinColumn(name = "user_id"))
 public class User {
 
     @Id
@@ -23,4 +24,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Post> posts = new LinkedHashSet<> ();
+
+    @Embedded
+    private Family family;
 }
